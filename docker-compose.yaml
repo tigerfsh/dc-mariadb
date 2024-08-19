@@ -4,14 +4,19 @@ services:
 
   db:
     image: mariadb:10.11
-
+    container_name: mariadb_10_11
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: example
+    volumes:
+      - ./mysqld:/var/run/mysqld/
+      - ./data:/var/lib/mysql  
+    ports:
+      - 3306:3306
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8089:8080
+      - 8080:8080
 
