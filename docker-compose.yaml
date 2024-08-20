@@ -5,6 +5,14 @@ services:
   db:
     image: mariadb:10.11
     container_name: mariadb_10_11
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 4G
+        reservations:
+          cpus: '0.1'
+          memory: 4G
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: example
@@ -12,11 +20,11 @@ services:
       - ./mysqld:/var/run/mysqld/
       - ./data:/var/lib/mysql  
     ports:
-      - 3306:3306
+      - 3307:3306
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
 
